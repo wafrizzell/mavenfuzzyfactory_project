@@ -1,18 +1,8 @@
-# mavenfuzzyfactory_project
+# Maven Fuzzy Factory
+## A Maven Analytics - Advanced MySQL Project
 
-1. Project Title
-2. Project Description
-  What your application does,
-  Why you used the technologies you used,
-  Some of the challenges you faced and features you hope to implement in the future.
-3. Table of Contents
-4. How to Run or Install (if necessary)
-5. How to Use Project
-6. Include Credits (where dataset came from etc.)
-7. Include License
+## Description
 
-For Portfolio Projects maybe a slightly different style
-1. Title
 2. Description
 3. Table of Contents
 4. Business Case
@@ -26,3 +16,4 @@ For Portfolio Projects maybe a slightly different style
   D. Analyze
   E. Share
   F. Further Considerations
+ 8. Credits
