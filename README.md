@@ -3,22 +3,23 @@
 
 ## Description
 
-
-3. Table of Contents
+Table of Contents
 
 <!-- Insert Banner photo of dashboard -->
 
-4. Business Case
+## Business Case
 
-5. Summarize Data Set
+## Data Source
 
 <!-- Insert image of the database EER diagram -->
 
-6. Summarize Insights and Impact
+## Approach
+
+## Results
 
 ADD the questions and the answers
 
-7. Technical Details
+## Technical Details
   This is the more in-depth longer version of the process
   
   A. Ask
@@ -34,5 +35,5 @@ ADD the questions and the answers
   F. Further Considerations
   
   
- 8. Credits
+ ## Credits
   Maven Analytics Advanced MySQL 
