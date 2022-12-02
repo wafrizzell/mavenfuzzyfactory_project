@@ -25,13 +25,13 @@ Description
 <details>
   <summary><h3>In-Depth Analysis</h3></summary>
   
-  This is the more in-depth longer version of the process
+
   
- /*
+
 1.   Gsearch seems to be the biggest driver of our business. Could you pull monthly trends for Gsearch sessions
 and orders so that we can showcase the growth there?
-*/
 
+```
 SELECT
 	YEAR(ws.created_at) AS yr,
     MONTH(ws.created_at) AS mo,
@@ -48,12 +48,13 @@ GROUP BY
 	yr,
     mo
 ;
+```
 
-/*
+			     
 2. Next, it would be great to see a similar monthly trend for Gsearch, but this time splitting out nonbrand and brand campaigns separately.
 I am wondering if brand is picking up at all. If so, this is a good story to tell.
-*/
-
+			     
+```
 SELECT
 	YEAR(ws.created_at) AS yr,
     MONTH(ws.created_at) AS mo,
@@ -75,12 +76,13 @@ GROUP BY
 	yr,
     mo
 ;
+```
+	
 
-/*
 3. While we're on Gsearch, could you dive into nonbrand, and pull monthly sessions and orders split by device type?
 I want to flex out analytical muscles a little and show the board we really know our traffic sources.
-*/
 
+```
 SELECT
 	YEAR(ws.created_at) AS yr,
     MONTH(ws.created_at) AS mo,
@@ -102,12 +104,13 @@ GROUP BY
 	yr,
     mo
 ;
-
-/*
+```
+			     
 4. I'm worried that one of our more pessimistic board members may be concerned about the large % of traffic
 from Gsearch. Can you pull monthly trends for Gsearch, alongside monthly trends for each of our other channels?
-*/
 
+	
+```
 SELECT
 	YEAR(created_at) AS yr,
     MONTH(created_at) AS mo,
@@ -122,12 +125,12 @@ GROUP BY
 	yr,
     mo
 ;
-
-/*
+```
+	
 5. I'd like to tell the story of website performance improvements over the course of the first 8 months.
 Could you pull session to order conversion rates, by month?
-*/
 
+```
 SELECT
 	YEAR(ws.created_at) AS yr,
     MONTH(ws.created_at) AS mo,
@@ -143,11 +146,11 @@ GROUP BY
 	yr,
     mo
 ;
-
-/*
+```
+	
 6. For the Gsearch lander test, please estimate the revenue that test earned us.
-*/
 
+```
 -- Determine minimum website pageview id for /lander-1 test page
 SELECT
 	MIN(website_pageview_id) as min_pv_id
@@ -156,7 +159,8 @@ WHERE
 	pageview_url = '/lander-1'
 ;
 -- min_pv_id = 23504
-
+```
+```	
 -- create a temp table for first_pageviews using min_pv_id 23504 as minimum pageview
 DROP TEMPORARY TABLE IF EXISTS first_pageviews;
 CREATE TEMPORARY TABLE first_pageviews
@@ -173,7 +177,8 @@ FROM website_pageviews AS wp
 GROUP BY
 	wp.website_session_id
 ;
-
+```
+```	
 -- Get the lander url for each first pageview
 CREATE TEMPORARY TABLE landing_pages
 SELECT
@@ -185,7 +190,8 @@ FROM first_pageviews AS fp
 WHERE
 	wp.pageview_url IN ('/home','/lander-1')
 ;
-
+```
+```
 -- Find orders linked with each landing page if any, else null
 CREATE TEMPORARY TABLE landing_page_w_orders
 SELECT
@@ -196,7 +202,8 @@ FROM landing_pages
 	LEFT JOIN orders
 		ON landing_pages.website_session_id = orders.website_session_id
 ;
-
+```
+```	
 -- Find difference between conversion rates
 
 SELECT
@@ -210,8 +217,8 @@ GROUP BY
 ;
 -- 0.0406 - 0.0318 = 0.0088
 -- There is a 0.0088 increase in conv_rate with /lander-1 compared to /home
-
-
+```
+```
 -- Find last pageview for gsearch nonbrand where traffic was sent to '/home'
 SELECT
 	MAX(ws.website_session_id) AS last_home_pageview,
@@ -226,8 +233,8 @@ WHERE
     AND pageview_url = '/home'
 ;
 -- The last '/home' website session id was 17145
-
-
+```
+```
 -- Count sessions since last session '/home' was used
 SELECT
 	COUNT(website_session_id) AS sessions
@@ -240,12 +247,12 @@ WHERE
 ;
 -- 22,972 sessions at 0.0088 increase in conv_rate = approximately 202 additional orders
 -- since '/home' replacement on '2012-07-29'
+```
 
-/*
 7. For the landing page test you analyzed previously, it would be great to show a full conversions funnel
 from each of the two orders. You can use the same time period you analyzed last time (Jun 19-Jul 28).
-*/
 
+```
 -- This query will add a flag = 1 for the page viewed
 SELECT
 	ws.website_session_id,
@@ -271,7 +278,8 @@ ORDER BY
 	ws.website_session_id,
     wp.pageview_url
 ;
-
+```
+```			   
 -- Using the above query as a subquery in the following query will give us the pages viewed
 -- at the website session level
 CREATE TEMPORARY TABLE session_level_funnels
@@ -313,7 +321,8 @@ ORDER BY
 GROUP BY
 	website_session_id
 ;
-
+```
+```			   
 -- Determine the sessions per funnel segment for each landing page
 SELECT
 	CASE
@@ -332,7 +341,8 @@ FROM session_level_funnels
 GROUP BY
 	landing_page
 ;
-
+```
+```			   
 -- Determine the clickthrough rate per funnel segment for each landing page
 SELECT
 	CASE
@@ -357,14 +367,14 @@ FROM session_level_funnels
 GROUP BY
 	landing_page
 ;
+```
 
 
-/*
 8. I'd love for you to quantify the impact of our billing test, as well. Please analyze the lift
 generated from the test (SEP 10 - NOV 10), in terms of revenue per billing page session, and then pull
 the number of billing page sessions for the past month to understand monthly impact.
-*/
 
+```
 SELECT
 	billing_version,
     COUNT(DISTINCT website_session_id) AS sessions,
@@ -386,12 +396,12 @@ FROM (
 GROUP BY
 	billing_version
 ;
-
+```
 -- /billing    = $22.83 per billing page seen
 -- /billing-2  = $31.34 per billing page seen
 -- Increase of    $8.51 per billing page seen
 
-
+```
 -- Next determine how many session in the past month
 SELECT
 	COUNT(website_session_id) AS sessions
@@ -405,7 +415,7 @@ WHERE
 -- 1,193 sessions in the past month
 -- Increase of $8.51 per billing page seen
 -- Approximate increase of $10,152 over the past month
-
+```
   
   </details>
   
