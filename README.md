@@ -1,6 +1,6 @@
 # Maven Analytics - Advanced MySQL Project
 
-Description
+
 
 #### Table of Contents
 [Business Case](#business-case) | 
@@ -11,6 +11,8 @@ Description
 [Credits](#credits)
 
 <!-- Insert Banner photo of dashboard -->
+Description
+
 
 ### Business Case
 
@@ -29,24 +31,24 @@ The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy F
 
   
 
-1.   Gsearch seems to be the biggest driver of our business. Could you pull monthly trends for Gsearch sessions
-and orders so that we can showcase the growth there?
+**1.   Gsearch seems to be the biggest driver of our business. Could you pull monthly trends for Gsearch sessions
+and orders so that we can showcase the growth there?**
 
 ```
 SELECT
-	YEAR(ws.created_at) AS yr,
+    YEAR(ws.created_at) AS yr,
     MONTH(ws.created_at) AS mo,
     COUNT(DISTINCT ws.website_session_id) AS gsearch_sessions,
     COUNT(DISTINCT o.order_id) AS orders,
     COUNT(DISTINCT o.order_id)/COUNT(DISTINCT ws.website_session_id) AS conv_rate
 FROM website_sessions AS ws
-	LEFT JOIN orders AS o
-		ON ws.website_session_id = o.website_session_id
+    LEFT JOIN orders AS o
+	    ON ws.website_session_id = o.website_session_id
 WHERE
-	ws.utm_source = 'gsearch'
+    ws.utm_source = 'gsearch'
     AND ws.created_at < '2012-11-27'
 GROUP BY 
-	yr,
+    yr,
     mo
 ;
 ```
