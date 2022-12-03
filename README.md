@@ -43,7 +43,7 @@ SELECT
     COUNT(DISTINCT o.order_id)/COUNT(DISTINCT ws.website_session_id) AS conv_rate
 FROM website_sessions AS ws
     LEFT JOIN orders AS o
-	    ON ws.website_session_id = o.website_session_id
+        ON ws.website_session_id = o.website_session_id
 WHERE
     ws.utm_source = 'gsearch'
     AND ws.created_at < '2012-11-27'
@@ -64,14 +64,14 @@ SELECT
     COUNT(DISTINCT CASE WHEN utm_campaign = 'nonbrand' THEN ws.website_session_id ELSE NULL END) AS nonbrand_sessions,
     COUNT(DISTINCT CASE WHEN utm_campaign = 'nonbrand' THEN o.order_id ELSE NULL END) AS nonbrand_orders,
     COUNT(DISTINCT CASE WHEN utm_campaign = 'nonbrand' THEN o.order_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN utm_campaign = 'nonbrand' THEN ws.website_session_id ELSE NULL END) AS nonbrand_conv_rate,
+        COUNT(DISTINCT CASE WHEN utm_campaign = 'nonbrand' THEN ws.website_session_id ELSE NULL END) AS nonbrand_conv_rate,
     COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN ws.website_session_id ELSE NULL END) AS brand_sessions,
     COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN o.order_id ELSE NULL END) AS brand_orders,
     COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN o.order_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN ws.website_session_id ELSE NULL END) AS brand_conv_rate
+        COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN ws.website_session_id ELSE NULL END) AS brand_conv_rate
 FROM website_sessions AS ws
     LEFT JOIN orders AS o
-	    ON ws.website_session_id = o.website_session_id
+        ON ws.website_session_id = o.website_session_id
 WHERE
     ws.utm_source = 'gsearch'
     AND ws.created_at < '2012-11-27'
@@ -92,14 +92,14 @@ SELECT
     COUNT(DISTINCT CASE WHEN device_type = 'desktop' THEN ws.website_session_id ELSE NULL END) AS desktop_sessions,
     COUNT(DISTINCT CASE WHEN device_type = 'desktop' THEN o.order_id ELSE NULL END) AS desktop_orders,
     COUNT(DISTINCT CASE WHEN device_type = 'desktop' THEN o.order_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN device_type = 'desktop' THEN ws.website_session_id ELSE NULL END) AS desktop_conv_rate,
+        COUNT(DISTINCT CASE WHEN device_type = 'desktop' THEN ws.website_session_id ELSE NULL END) AS desktop_conv_rate,
     COUNT(DISTINCT CASE WHEN device_type = 'mobile' THEN ws.website_session_id ELSE NULL END) AS mobile_sessions,
     COUNT(DISTINCT CASE WHEN device_type = 'mobile' THEN o.order_id ELSE NULL END) AS mobile_orders,
     COUNT(DISTINCT CASE WHEN device_type = 'mobile' THEN o.order_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN device_type = 'mobile' THEN ws.website_session_id ELSE NULL END) AS mobile_conv_rate
+        COUNT(DISTINCT CASE WHEN device_type = 'mobile' THEN ws.website_session_id ELSE NULL END) AS mobile_conv_rate
 FROM website_sessions AS ws
     LEFT JOIN orders AS o
-	    ON ws.website_session_id = o.website_session_id
+        ON ws.website_session_id = o.website_session_id
 WHERE
     ws.utm_source = 'gsearch'
     AND ws.created_at < '2012-11-27'
@@ -142,7 +142,7 @@ SELECT
     COUNT(DISTINCT o.order_id)/COUNT(DISTINCT ws.website_session_id) AS conv_rate
 FROM website_sessions AS ws
     LEFT JOIN orders AS o
-	    ON ws.website_session_id = o.website_session_id
+        ON ws.website_session_id = o.website_session_id
 WHERE
     ws.created_at < '2012-11-27'
 GROUP BY 
@@ -162,7 +162,6 @@ FROM website_pageviews
 WHERE
     pageview_url = '/lander-1'
 ;
-
 ```
 min_pv_id = 23504
 
@@ -176,7 +175,7 @@ SELECT
     MIN(wp.website_pageview_id) as min_pv_id
 FROM website_pageviews AS wp
     INNER JOIN website_sessions AS ws
-	    ON wp.website_session_id = ws.website_session_id
+        ON wp.website_session_id = ws.website_session_id
         AND ws.created_at < '2012-07-28'
         AND wp.website_pageview_id > 23504
         AND ws.utm_source = 'gsearch'
@@ -194,7 +193,7 @@ SELECT
     wp.pageview_url AS landing_page
 FROM first_pageviews AS fp
     LEFT JOIN website_pageviews AS wp
-	    ON fp.website_session_id = wp.website_session_id
+        ON fp.website_session_id = wp.website_session_id
 WHERE
     wp.pageview_url IN ('/home','/lander-1')
 ;
@@ -208,7 +207,7 @@ SELECT
     orders.order_id
 FROM landing_pages
     LEFT JOIN orders
-	    ON landing_pages.website_session_id = orders.website_session_id
+        ON landing_pages.website_session_id = orders.website_session_id
 ;
 ```
 Find difference between conversion rates
@@ -233,7 +232,7 @@ SELECT
     MAX(ws.created_at) AS last_date
 FROM website_sessions AS ws
     LEFT JOIN website_pageviews AS wp
-	    ON ws.website_session_id = wp.website_session_id
+        ON ws.website_session_id = wp.website_session_id
 WHERE
     ws.created_at < '2012-11-27'
     AND utm_source = 'gsearch'
@@ -277,7 +276,7 @@ SELECT
     CASE WHEN pageview_url = '/thank-you-for-your-order' THEN 1 ELSE 0 END AS thankyou_page
 FROM website_sessions AS ws
     LEFT JOIN website_pageviews AS wp
-	    ON ws.website_session_id = wp.website_session_id
+        ON ws.website_session_id = wp.website_session_id
 WHERE
     ws.created_at > '2012-06-19'
     AND ws.created_at < '2012-07-28'
@@ -325,20 +324,20 @@ FROM (
         AND utm_source = 'gsearch'
         AND utm_campaign = 'nonbrand'
     ORDER BY
-	    ws.website_session_id,
+        ws.website_session_id,
         wp.pageview_url
 ) AS pageview_level
 GROUP BY
     website_session_id
 ;
 ```
--- Determine the sessions per funnel segment for each landing page
+Determine the sessions per funnel segment for each landing page
 ```			   
 SELECT
     CASE
-	    WHEN home_page_start = 1 THEN '/home'
+        WHEN home_page_start = 1 THEN '/home'
         WHEN lander1_page_start = 1 THEN '/lander-1'
-	    ELSE 'oops - check the code'
+        ELSE 'oops - check the code'
     END AS landing_page,
     COUNT(DISTINCT website_session_id) AS sessions,
     COUNT(DISTINCT CASE WHEN products_made_it = 1 THEN website_session_id ELSE NULL END) AS to_products,
@@ -356,23 +355,23 @@ GROUP BY
 ```			   
 SELECT
     CASE
-	    WHEN home_page_start = 1 THEN '/home'
+        WHEN home_page_start = 1 THEN '/home'
         WHEN lander1_page_start = 1 THEN '/lander-1'
-	    ELSE 'oops - check the code'
+        ELSE 'oops - check the code'
     END AS landing_page,
     COUNT(DISTINCT website_session_id) AS sessions,
     COUNT(DISTINCT CASE WHEN products_made_it = 1 THEN website_session_id ELSE NULL END)/
-	    COUNT(DISTINCT website_session_id) AS lander_click_rate,
+        COUNT(DISTINCT website_session_id) AS lander_click_rate,
     COUNT(DISTINCT CASE WHEN mrfuzzy_made_it = 1 THEN website_session_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN products_made_it = 1 THEN website_session_id ELSE NULL END) AS products_click_rate,
+        COUNT(DISTINCT CASE WHEN products_made_it = 1 THEN website_session_id ELSE NULL END) AS products_click_rate,
     COUNT(DISTINCT CASE WHEN cart_made_it = 1 THEN website_session_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN mrfuzzy_made_it = 1 THEN website_session_id ELSE NULL END) AS mrfuzzy_click_rate,
+        COUNT(DISTINCT CASE WHEN mrfuzzy_made_it = 1 THEN website_session_id ELSE NULL END) AS mrfuzzy_click_rate,
     COUNT(DISTINCT CASE WHEN shipping_made_it = 1 THEN website_session_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN cart_made_it = 1 THEN website_session_id ELSE NULL END) AS cart_click_rate,
+        COUNT(DISTINCT CASE WHEN cart_made_it = 1 THEN website_session_id ELSE NULL END) AS cart_click_rate,
     COUNT(DISTINCT CASE WHEN billing_made_it = 1 THEN website_session_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN shipping_made_it = 1 THEN website_session_id ELSE NULL END) AS shipping_click_rate,
+        COUNT(DISTINCT CASE WHEN shipping_made_it = 1 THEN website_session_id ELSE NULL END) AS shipping_click_rate,
     COUNT(DISTINCT CASE WHEN thankyou_made_it = 1 THEN website_session_id ELSE NULL END)/
-	    COUNT(DISTINCT CASE WHEN billing_made_it = 1 THEN website_session_id ELSE NULL END) AS billing_click_rate
+        COUNT(DISTINCT CASE WHEN billing_made_it = 1 THEN website_session_id ELSE NULL END) AS billing_click_rate
 FROM session_level_funnels
 GROUP BY
     landing_page
@@ -391,15 +390,15 @@ SELECT
     SUM(price_usd)/COUNT(DISTINCT website_session_id) AS revenue_per_billing_version
 FROM (
     SELECT
-	    wp.website_session_id,
+        wp.website_session_id,
         wp.pageview_url AS billing_version,
         o.order_id,
         o.price_usd
     FROM website_pageviews AS wp
-	    LEFT JOIN orders AS o
-		    ON wp.website_session_id = o.website_session_id
+        LEFT JOIN orders AS o
+            ON wp.website_session_id = o.website_session_id
     WHERE
-	    wp.created_at > '2012-09-10'
+        wp.created_at > '2012-09-10'
         AND wp.created_at < '2012-11-10'
         AND wp.pageview_url IN ('/billing', '/billing-2')
 ) AS pageview_w_order_info
