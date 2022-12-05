@@ -18,7 +18,7 @@ Description
 
 ### Data Description
 <img alt="Fuzzy Factory Database EER Diagram" src="02_Images/maven_fuzzy_db_eer.png">
-The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions and website_pageviews. 
+The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions, website_pageviews, and orders. 
 
 
 ### Approach
@@ -156,7 +156,7 @@ GROUP BY
 
 **6. For the Gsearch lander test, please estimate the revenue that test earned us.**
 
-Determine minimum website pageview id for /lander-1 test page
+This is a multiple step problem. First we need to determine the minimum website pageview id for /lander-1 test page.
 
 ```
 SELECT
@@ -167,10 +167,10 @@ WHERE
 ;
 ```
 	
-min_pv_id = 23504
+
 <img alt="Query result for question 6a" src="02_Images/Question_6a.png">
 
-create a temp table for first_pageviews using min_pv_id 23504 as minimum pageview
+Now we create a temp table for first_pageviews using min_pv_id 23504 as the minimum pageview.
 
 ```	
 DROP TEMPORARY TABLE IF EXISTS first_pageviews;
@@ -192,7 +192,7 @@ GROUP BY
 	
 <img alt="Query result for question 6b" src="02_Images/Question_6b.png">
 
--- Get the lander url for each first pageview
+Now we will get the lander url (either /home or /lander-1) for each first pageview per website session in a temp table.
 ```	
 CREATE TEMPORARY TABLE landing_pages
 SELECT
@@ -207,7 +207,7 @@ WHERE
 ```
 	
 <img alt="Query result for question 6c" src="02_Images/Question_6c.png">
-Find orders linked with each landing page if any, else null
+Create a temp table for each landing page linked with orders if any, else no order is null.
 	
 ```
 CREATE TEMPORARY TABLE landing_page_w_orders
@@ -221,7 +221,7 @@ FROM landing_pages
 ;
 ```
 <img alt="Query result for question 6d" src="02_Images/Question_6d.png">
-Find difference between conversion rates
+Find the difference between the conversion rates between landing pages.
 
 ```	
 SELECT
@@ -236,10 +236,9 @@ GROUP BY
 ```
 	
 <img alt="Query result for question 6e" src="02_Images/Question_6e.png">
-0.0406 - 0.0318 = 0.0088
-There is a 0.0088 increase in conv_rate with /lander-1 compared to /home
+The results of 0.0406 - 0.0318 = 0.0088. There is a 0.0088 increase in the conversion rate with the '/lander-1' compared to the '/home' landing page.
 
-Find last pageview for gsearch nonbrand where traffic was sent to '/home'
+Next, we will find the last pageview for Gsearch nonbrand where the traffic was sent to '/home' landing page.
 	
 ```
 SELECT
@@ -257,9 +256,7 @@ WHERE
 ```
 		       
 <img alt="Query result for question 6f" src="02_Images/Question_6f.png">
-The last '/home' website session id was 17145
-
-Count sessions since last session '/home' was used
+The last '/home' website session id was 17145. Now we will count sessions since last session '/home' was used.
 ```
 SELECT
     COUNT(website_session_id) AS sessions
@@ -273,8 +270,8 @@ WHERE
 ```
 	
 <img alt="Query result for question 6g" src="02_Images/Question_6g.png">
-22,972 sessions at 0.0088 increase in conv_rate = approximately 202 additional orders
-since '/home' replacement on '2012-07-29'
+22,972 sessions since '/home' landing page was last used. With an 0.0088 increase in the conversion rate that equates to approximately 202 additional orders
+since '/home' replacement on '2012-07-29'.
 
 7. For the landing page test you analyzed previously, it would be great to show a full conversions funnel
 from each of the two orders. You can use the same time period you analyzed last time (Jun 19-Jul 28).
