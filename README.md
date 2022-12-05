@@ -166,6 +166,7 @@ WHERE
     pageview_url = '/lander-1'
 ;
 ```
+	
 min_pv_id = 23504
 <img alt="Query result for question 6a" src="02_Images/Question_6a.png">
 
@@ -188,6 +189,7 @@ GROUP BY
     wp.website_session_id
 ;
 ```
+	
 <img alt="Query result for question 6b" src="02_Images/Question_6b.png">
 
 -- Get the lander url for each first pageview
@@ -203,8 +205,10 @@ WHERE
     wp.pageview_url IN ('/home','/lander-1')
 ;
 ```
+	
 <img alt="Query result for question 6c" src="02_Images/Question_6c.png">
--- Find orders linked with each landing page if any, else null
+Find orders linked with each landing page if any, else null
+	
 ```
 CREATE TEMPORARY TABLE landing_page_w_orders
 SELECT
@@ -218,6 +222,7 @@ FROM landing_pages
 ```
 <img alt="Query result for question 6d" src="02_Images/Question_6d.png">
 Find difference between conversion rates
+
 ```	
 SELECT
     landing_page,
@@ -229,11 +234,13 @@ GROUP BY
     landing_page
 ;
 ```
+	
 <img alt="Query result for question 6e" src="02_Images/Question_6e.png">
 0.0406 - 0.0318 = 0.0088
 There is a 0.0088 increase in conv_rate with /lander-1 compared to /home
 
 Find last pageview for gsearch nonbrand where traffic was sent to '/home'
+	
 ```
 SELECT
     MAX(ws.website_session_id) AS last_home_pageview,
@@ -248,6 +255,7 @@ WHERE
     AND pageview_url = '/home'
 ;
 ```
+		       
 <img alt="Query result for question 6f" src="02_Images/Question_6f.png">
 The last '/home' website session id was 17145
 
@@ -263,6 +271,7 @@ WHERE
     AND website_session_id > 17145
 ;
 ```
+	
 <img alt="Query result for question 6g" src="02_Images/Question_6g.png">
 22,972 sessions at 0.0088 increase in conv_rate = approximately 202 additional orders
 since '/home' replacement on '2012-07-29'
@@ -297,9 +306,11 @@ ORDER BY
     wp.pageview_url
 ;
 ```
+			   
 <img alt="Query result for question 7a" src="02_Images/Question_7a.png">
 Using the above query as a subquery in the following query will give us the pages viewed
 at the website session level
+	
 ```			   
 CREATE TEMPORARY TABLE session_level_funnels
 SELECT
@@ -341,8 +352,10 @@ GROUP BY
     website_session_id
 ;
 ```
+			       
 <img alt="Query result for question 7b" src="02_Images/Question_7b.png">
 Determine the sessions per funnel segment for each landing page
+	
 ```			   
 SELECT
     CASE
@@ -362,8 +375,10 @@ GROUP BY
     landing_page
 ;
 ```
+	
 <img alt="Query result for question 7c" src="02_Images/Question_7c.png">
 -- Determine the clickthrough rate per funnel segment for each landing page
+	
 ```			   
 SELECT
     CASE
@@ -389,6 +404,7 @@ GROUP BY
     landing_page
 ;
 ```
+	
 <img alt="Query result for question 7d" src="02_Images/Question_7d.png">
 
 **8. I'd love for you to quantify the impact of our billing test, as well. Please analyze the lift
@@ -435,6 +451,7 @@ WHERE
     AND created_at < '2012-11-27'
 ;
 ```
+		      
 <img alt="Query result for question 8b" src="02_Images/Question_8b.png">
 1,193 sessions in the past month
 Increase of $8.51 per billing page seen
