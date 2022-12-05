@@ -17,7 +17,7 @@ Description
 ### Business Case
 
 ### Data Description
-<!-- Insert db eer diagram -->
+<img src="02_Images/maven_fuzzy_db_eer.png">
 The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions and website_pageviews. 
 
 
