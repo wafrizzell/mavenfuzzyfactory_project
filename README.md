@@ -52,7 +52,7 @@ GROUP BY
     mo
 ;
 ```
-<img alt="Query result for question 1" src="02_Images/question_1.png">
+<img alt="Query result for question 1" src="02_Images/Question_1.png">
 			     
 **2. Next, it would be great to see a similar monthly trend for Gsearch, but this time splitting out nonbrand and brand campaigns separately.
 I am wondering if brand is picking up at all. If so, this is a good story to tell.**
@@ -80,7 +80,7 @@ GROUP BY
     mo
 ;
 ```
-	
+<img alt="Query result for question 2" src="02_Images/Question_2.png">	
 
 **3. While we're on Gsearch, could you dive into nonbrand, and pull monthly sessions and orders split by device type?
 I want to flex out analytical muscles a little and show the board we really know our traffic sources.**
@@ -108,7 +108,8 @@ GROUP BY
     mo
 ;
 ```
-			     
+<img alt="Query result for question 3" src="02_Images/Question_3.png">	
+
 **4. I'm worried that one of our more pessimistic board members may be concerned about the large % of traffic
 from Gsearch. Can you pull monthly trends for Gsearch, alongside monthly trends for each of our other channels?**
 
@@ -129,7 +130,8 @@ GROUP BY
     mo
 ;
 ```
-	
+<img alt="Query result for question 4" src="02_Images/Question_4.png">	
+
 **5. I'd like to tell the story of website performance improvements over the course of the first 8 months.
 Could you pull session to order conversion rates, by month?**
 
@@ -150,7 +152,8 @@ GROUP BY
     mo
 ;
 ```
-	
+<img alt="Query result for question 5" src="02_Images/Question_5.png">	
+
 **6. For the Gsearch lander test, please estimate the revenue that test earned us.**
 
 Determine minimum website pageview id for /lander-1 test page
@@ -164,6 +167,7 @@ WHERE
 ;
 ```
 min_pv_id = 23504
+<img alt="Query result for question 6a" src="02_Images/Question_6a.png">
 
 create a temp table for first_pageviews using min_pv_id 23504 as minimum pageview
 
@@ -184,6 +188,7 @@ GROUP BY
     wp.website_session_id
 ;
 ```
+<img alt="Query result for question 6b" src="02_Images/Question_6b.png">
 
 -- Get the lander url for each first pageview
 ```	
@@ -198,6 +203,7 @@ WHERE
     wp.pageview_url IN ('/home','/lander-1')
 ;
 ```
+<img alt="Query result for question 6c" src="02_Images/Question_6c.png">
 -- Find orders linked with each landing page if any, else null
 ```
 CREATE TEMPORARY TABLE landing_page_w_orders
@@ -210,6 +216,7 @@ FROM landing_pages
         ON landing_pages.website_session_id = orders.website_session_id
 ;
 ```
+<img alt="Query result for question 6d" src="02_Images/Question_6d.png">
 Find difference between conversion rates
 ```	
 SELECT
@@ -222,6 +229,7 @@ GROUP BY
     landing_page
 ;
 ```
+<img alt="Query result for question 6e" src="02_Images/Question_6e.png">
 0.0406 - 0.0318 = 0.0088
 There is a 0.0088 increase in conv_rate with /lander-1 compared to /home
 
@@ -240,6 +248,7 @@ WHERE
     AND pageview_url = '/home'
 ;
 ```
+<img alt="Query result for question 6f" src="02_Images/Question_6f.png">
 The last '/home' website session id was 17145
 
 Count sessions since last session '/home' was used
@@ -254,6 +263,7 @@ WHERE
     AND website_session_id > 17145
 ;
 ```
+<img alt="Query result for question 6g" src="02_Images/Question_6g.png">
 22,972 sessions at 0.0088 increase in conv_rate = approximately 202 additional orders
 since '/home' replacement on '2012-07-29'
 
@@ -287,7 +297,7 @@ ORDER BY
     wp.pageview_url
 ;
 ```
-
+<img alt="Query result for question 7a" src="02_Images/Question_7a.png">
 Using the above query as a subquery in the following query will give us the pages viewed
 at the website session level
 ```			   
@@ -331,6 +341,7 @@ GROUP BY
     website_session_id
 ;
 ```
+<img alt="Query result for question 7b" src="02_Images/Question_7b.png">
 Determine the sessions per funnel segment for each landing page
 ```			   
 SELECT
@@ -351,6 +362,7 @@ GROUP BY
     landing_page
 ;
 ```
+<img alt="Query result for question 7c" src="02_Images/Question_7c.png">
 -- Determine the clickthrough rate per funnel segment for each landing page
 ```			   
 SELECT
@@ -377,7 +389,7 @@ GROUP BY
     landing_page
 ;
 ```
-
+<img alt="Query result for question 7d" src="02_Images/Question_7d.png">
 
 **8. I'd love for you to quantify the impact of our billing test, as well. Please analyze the lift
 generated from the test (SEP 10 - NOV 10), in terms of revenue per billing page session, and then pull
@@ -406,6 +418,7 @@ GROUP BY
     billing_version
 ;
 ```
+<img alt="Query result for question 8a" src="02_Images/Question_8a.png">
 /billing    = $22.83 per billing page seen
 /billing-2  = $31.34 per billing page seen
 Increase of    $8.51 per billing page seen
@@ -422,6 +435,7 @@ WHERE
     AND created_at < '2012-11-27'
 ;
 ```
+<img alt="Query result for question 8b" src="02_Images/Question_8b.png">
 1,193 sessions in the past month
 Increase of $8.51 per billing page seen
 Approximate increase of $10,152 over the past month 
