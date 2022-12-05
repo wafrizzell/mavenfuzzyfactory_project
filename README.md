@@ -17,7 +17,7 @@ Description
 ### Business Case
 
 ### Data Description
-<img src="02_Images/maven_fuzzy_db_eer.png">
+<img alt="Fuzzy Factory Database EER Diagram" src="02_Images/maven_fuzzy_db_eer.png">
 The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions and website_pageviews. 
 
 
@@ -52,7 +52,7 @@ GROUP BY
     mo
 ;
 ```
-
+<img alt="Query result for question 1" src="02_Images/question_1.png">
 			     
 **2. Next, it would be great to see a similar monthly trend for Gsearch, but this time splitting out nonbrand and brand campaigns separately.
 I am wondering if brand is picking up at all. If so, this is a good story to tell.**
