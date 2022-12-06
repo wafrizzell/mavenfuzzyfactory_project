@@ -257,6 +257,7 @@ WHERE
 		       
 <img alt="Query result for question 6f" src="02_Images/Question_6f.png">
 The last '/home' website session id was 17145. Now we will count sessions since last session '/home' was used.
+
 ```
 SELECT
     COUNT(website_session_id) AS sessions
