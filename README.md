@@ -1,6 +1,9 @@
 # Maven Analytics - Advanced MySQL Project
 
-
+<p align="left">
+    <img src="https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white">
+    <img src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white">
+</p>
 
 #### Table of Contents
 [Business Case](#business-case) | 
@@ -11,8 +14,6 @@
 [Credits](#credits)
 
 <!-- Insert Banner photo of dashboard -->
-Description
-
 
 ### Business Case
 
@@ -33,6 +34,8 @@ The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy F
 
 **1.   Gsearch seems to be the biggest driver of our business. Could you pull monthly trends for Gsearch sessions
 and orders so that we can showcase the growth there?**
+<br>
+<br>
 
 ```
 SELECT
