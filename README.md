@@ -16,7 +16,9 @@
 <!-- Insert Banner photo of dashboard -->
 
 ### Business Case
-
+>Maven Fuzzy Factory has been live for ~8 months, and your CEO is due to present company
+performance metrics to the board next week. You’ll be the one tasked with preparing relevant
+metrics to show the company’s promising growth.
 ### Data Description
 <img alt="Fuzzy Factory Database EER Diagram" src="02_Images/maven_fuzzy_db_eer.png">
 The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions, website_pageviews, and orders. 
