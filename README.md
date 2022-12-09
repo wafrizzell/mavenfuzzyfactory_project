@@ -23,6 +23,14 @@ metrics to show the company’s promising growth.
 <img alt="Fuzzy Factory Database EER Diagram" src="02_Images/maven_fuzzy_db_eer.png">
 The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions, website_pageviews, and orders. 
 
+<img alt="website_sessions" src="02_Images/website_sessions.png">
+<img alt="website_session count" src="02_Images/website_sessions_count.png">
+
+<img alt="website_pageviews" src="02_Images/website_pageviews.png">
+<img alt="website_pageviews count" src="02_Images/website_pageviews_count.png">
+
+<img alt="orders" src="02_Images/orders.png">
+<img alt="orders count" src="02_Images/orders_count.png">
 
 ### Approach
 
