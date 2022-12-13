@@ -99,7 +99,9 @@ GROUP BY
 			     
 **2. Next, it would be great to see a similar monthly trend for Gsearch, but this time splitting out nonbrand and brand campaigns separately.
 I am wondering if brand is picking up at all. If so, this is a good story to tell.**
-			     
+<br>
+<br>
+
 ```
 SELECT
     YEAR(ws.created_at) AS yr,
@@ -127,6 +129,8 @@ GROUP BY
 
 **3. While we're on Gsearch, could you dive into nonbrand, and pull monthly sessions and orders split by device type?
 I want to flex out analytical muscles a little and show the board we really know our traffic sources.**
+<br>
+<br>
 
 ```
 SELECT
@@ -155,7 +159,8 @@ GROUP BY
 
 **4. I'm worried that one of our more pessimistic board members may be concerned about the large % of traffic
 from Gsearch. Can you pull monthly trends for Gsearch, alongside monthly trends for each of our other channels?**
-
+<br>
+<br>
 	
 ```
 SELECT
@@ -177,6 +182,8 @@ GROUP BY
 
 **5. I'd like to tell the story of website performance improvements over the course of the first 8 months.
 Could you pull session to order conversion rates, by month?**
+<br>
+<br>
 
 ```
 SELECT
@@ -198,6 +205,8 @@ GROUP BY
 <img alt="Query result for question 5" src="02_Images/Question_5.png">	
 
 **6. For the Gsearch lander test, please estimate the revenue that test earned us.**
+<br>
+<br>
 
 This is a multiple step problem. First we need to determine the minimum website pageview id for /lander-1 test page.
 
@@ -212,6 +221,8 @@ WHERE
 	
 
 <img alt="Query result for question 6a" src="02_Images/Question_6a.png">
+<br>
+<br>
 
 Now we create a temp table for first_pageviews using min_pv_id 23504 as the minimum pageview.
 
@@ -234,6 +245,8 @@ GROUP BY
 ```
 	
 <img alt="Query result for question 6b" src="02_Images/Question_6b.png">
+<br>
+<br>
 
 Now we will get the lander url (either /home or /lander-1) for each first pageview per website session in a temp table.
 ```	
@@ -250,6 +263,9 @@ WHERE
 ```
 	
 <img alt="Query result for question 6c" src="02_Images/Question_6c.png">
+<br>
+<br>
+
 Create a temp table for each landing page linked with orders if any, else no order is null.
 	
 ```
@@ -264,6 +280,9 @@ FROM landing_pages
 ;
 ```
 <img alt="Query result for question 6d" src="02_Images/Question_6d.png">
+<br>
+<br>
+
 Find the difference between the conversion rates between landing pages.
 
 ```	
@@ -300,6 +319,8 @@ WHERE
 		       
 <img alt="Query result for question 6f" src="02_Images/Question_6f.png">
 The last '/home' website session id was 17145. Now we will count sessions since last session '/home' was used.
+<br>
+<br>
 
 ```
 SELECT
@@ -316,11 +337,16 @@ WHERE
 <img alt="Query result for question 6g" src="02_Images/Question_6g.png">
 22,972 sessions since '/home' landing page was last used. With an 0.0088 increase in the conversion rate that equates to approximately 202 additional orders
 since '/home' replacement on '2012-07-29'.
+<br>
+<br>
 
 7. For the landing page test you analyzed previously, it would be great to show a full conversions funnel
 from each of the two orders. You can use the same time period you analyzed last time (Jun 19-Jul 28).
+<br>
+<br>
+	
+This query will add a flag = 1 for the page viewed
 
--- This query will add a flag = 1 for the page viewed
 ```
 SELECT
     ws.website_session_id,
@@ -349,6 +375,9 @@ ORDER BY
 ```
 			   
 <img alt="Query result for question 7a" src="02_Images/Question_7a.png">
+<br>
+<br>
+	
 Using the above query as a subquery in the following query will give us the pages viewed
 at the website session level
 	
@@ -395,6 +424,9 @@ GROUP BY
 ```
 			       
 <img alt="Query result for question 7b" src="02_Images/Question_7b.png">
+<br>
+<br>
+
 Determine the sessions per funnel segment for each landing page
 	
 ```			   
@@ -418,7 +450,10 @@ GROUP BY
 ```
 	
 <img alt="Query result for question 7c" src="02_Images/Question_7c.png">
--- Determine the clickthrough rate per funnel segment for each landing page
+<br>
+<br>
+
+Determine the clickthrough rate per funnel segment for each landing page
 	
 ```			   
 SELECT
@@ -451,6 +486,8 @@ GROUP BY
 **8. I'd love for you to quantify the impact of our billing test, as well. Please analyze the lift
 generated from the test (SEP 10 - NOV 10), in terms of revenue per billing page session, and then pull
 the number of billing page sessions for the past month to understand monthly impact.**
+<br>
+<br>
 
 ```
 SELECT
@@ -479,7 +516,8 @@ GROUP BY
 /billing    = $22.83 per billing page seen
 /billing-2  = $31.34 per billing page seen
 Increase of    $8.51 per billing page seen
-
+<br>
+<br>
 
 Next determine how many session in the past month
 ```
