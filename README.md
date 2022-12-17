@@ -16,9 +16,24 @@
 <!-- Insert Banner photo of dashboard -->
 
 ### Business Case
->Maven Fuzzy Factory has been live for ~8 months, and your CEO is due to present company
-performance metrics to the board next week. You’ll be the one tasked with preparing relevant
-metrics to show the company’s promising growth.
+Maven Fuzzy Factory is an online retailer that launched 8 months ago with the launch of their Mr. Fuzzy product. I am an e-commerce database analyst that works with the Head of Marketing and the Website Manager to optimize marketing channels and website conversion rates.
+
+Cindy Sharp, the CEO, has to present performance metrics to the board in an upcoming meeting. She has sent an email requesting my help to collect data to tell the story of the company’s growth over the first eight months to present to the board. 
+<br>
+<br>
+
+>Good morning,
+I need some help preparing a presentation for the board
+meeting next week.
+The board would like to have a better understanding of our
+growth story over our first 8 months. This will also be a
+good excuse to show off our analytical capabilities a bit.
+-Cindy
+
+<br>
+<br>
+
+
 ### Data Description
 <img alt="Fuzzy Factory Database EER Diagram" src="02_Images/maven_fuzzy_db_eer.png">
 The Maven Fuzzy Factory Database contains six related tables about Maven Fuzzy Factory e-commerce data. For this assignment we will be utilizing the tables that contain website activity data, including website_sessions, website_pageviews, and orders. 
