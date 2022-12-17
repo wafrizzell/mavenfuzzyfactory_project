@@ -31,7 +31,6 @@ good excuse to show off our analytical capabilities a bit.
 -Cindy
 
 <br>
-<br>
 
 
 ### Data Description
@@ -76,6 +75,9 @@ SELECT COUNT(*) FROM orders;
 
 <img alt="orders" src="02_Images/orders.png">
 <img alt="orders count" src="02_Images/orders_count.png">
+
+<br>
+<br>
 
 ### Approach
 
