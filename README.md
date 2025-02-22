@@ -555,4 +555,4 @@ Approximate increase of $10,152 over the past month
   </details>
   
  ### Credits
-Maven Fuzzy Factory Database and images provided by [Maven Analytics](http://www.mavenanalytics.io) as part of Advanced MySQL Data Analysis course.
+Maven Fuzzy Factory Database and images provided by [Maven Analytics](http://www.mavenanalytics.io) as part of Advanced MySQL for Marketing & Web Analytics course.
